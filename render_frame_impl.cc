@@ -3594,20 +3594,19 @@ blink::WebEncryptedMediaClient* RenderFrameImpl::encryptedMediaClient() {
 
   if (!web_encrypted_media_client_) {
 
-  std::cout << t << ' ' << now->tm_hour << ':' << now->tm_min << ':' << now->tm_sec << ' ';
-  std::cout << "RenderFrameImpl::encryptedMediaClient !web_encrypted_media_client" << std::endl;
+    std::cout << t << ' ' << now->tm_hour << ':' << now->tm_min << ':' << now->tm_sec << ' ';
+    std::cout << "RenderFrameImpl::encryptedMediaClient !web_encrypted_media_client" << std::endl;
 
     web_encrypted_media_client_.reset(new media::WebEncryptedMediaClientImpl(
-
-        std::cout << t << ' ' << now->tm_hour << ':' << now->tm_min << ':' << now->tm_sec << ' ';
-        std::cout << "RenderFrameImpl::encryptedMediaClient new media::WebEncryptedMediaClientImpl done" << std::endl;
-
         // base::Unretained(this) is safe because WebEncryptedMediaClientImpl
         // is destructed before |this|, and does not give away ownership of the
         // callback.
         base::Bind(&RenderFrameImpl::AreSecureCodecsSupported,
                    base::Unretained(this)),
         GetCdmFactory(), GetMediaPermission()));
+
+    std::cout << t << ' ' << now->tm_hour << ':' << now->tm_min << ':' << now->tm_sec << ' ';
+    std::cout << "RenderFrameImpl::encryptedMediaClient new media::WebEncryptedMediaClientImpl done" << std::endl;
   }
   return web_encrypted_media_client_.get();
 }
